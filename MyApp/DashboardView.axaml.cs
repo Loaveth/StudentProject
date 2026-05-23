@@ -12,17 +12,6 @@ public partial class DashboardView : UserControl
 {
     private readonly ExpenseStore _store = ExpenseStore.Instance;
 
-    private static readonly Dictionary<string, IBrush> CategoryColors = new()
-    {
-        ["Housing"]       = new SolidColorBrush(Color.Parse("#4e79a7")),
-        ["Food"]          = new SolidColorBrush(Color.Parse("#f28e2b")),
-        ["Transport"]     = new SolidColorBrush(Color.Parse("#e15759")),
-        ["Health"]        = new SolidColorBrush(Color.Parse("#76b7b2")),
-        ["Entertainment"] = new SolidColorBrush(Color.Parse("#59a14f")),
-        ["Subscriptions"] = new SolidColorBrush(Color.Parse("#edc948")),
-        ["Other"]         = new SolidColorBrush(Color.Parse("#b07aa1")),
-    };
-
     public DashboardView()
     {
         InitializeComponent();
@@ -126,7 +115,8 @@ public partial class DashboardView : UserControl
         double pct    = Math.Min((double)(expenses / income), 1.0);
         int    pctInt = (int)(pct * 100);
 
-        BudgetBar.Width = Math.Max(2, pct * 500);
+        double containerWidth = (BudgetBar.Parent as Border)?.Bounds.Width ?? 500;
+        BudgetBar.Width = Math.Max(2, pct * containerWidth);
         BudgetBarLabel.Text = $"{pctInt}% of income spent  (${expenses:F2} of ${income:F2})";
         BudgetBar.Background = pct >= 1.0
             ? Brushes.Red
@@ -168,7 +158,7 @@ public partial class DashboardView : UserControl
             var info = new StackPanel { VerticalAlignment = VerticalAlignment.Center };
             info.Children.Add(new TextBlock
             {
-                Text       = $"{CategoryEmoji(entry.Template.Category)} {entry.Template.Name}",
+                Text       = $"{CategoryHelper.GetEmoji(entry.Template.Category)} {entry.Template.Name}",
                 FontWeight = FontWeight.SemiBold
             });
             info.Children.Add(new TextBlock
@@ -216,7 +206,7 @@ public partial class DashboardView : UserControl
 
         foreach (var kv in totals)
         {
-            var brush = CategoryColors.GetValueOrDefault(kv.Key, Brushes.Gray);
+            var brush = CategoryHelper.GetColor(kv.Key);
             CategoryChart.Children.Add(BuildBar(kv.Key, kv.Value, max, brush));
         }
     }
@@ -288,7 +278,7 @@ public partial class DashboardView : UserControl
             CornerRadius        = new Avalonia.CornerRadius(3),
             Height              = 14,
             HorizontalAlignment = HorizontalAlignment.Left,
-            Width               = Math.Max(2, pct * 400)
+            Width               = Math.Max(2, pct * 350)
         };
         row.Children.Add(new Border
         {
@@ -339,15 +329,4 @@ public partial class DashboardView : UserControl
         SavingsLine3.Text       = $"✅ Saving all remaining income: goal reached in ~{fullMonths} month(s).";
         SavingsLine3.Foreground = Brushes.DarkGreen;
     }
-
-    private static string CategoryEmoji(string category) => category switch
-    {
-        "Housing"       => "🏠",
-        "Food"          => "🍔",
-        "Transport"     => "🚗",
-        "Health"        => "❤️",
-        "Entertainment" => "🎬",
-        "Subscriptions" => "📱",
-        _               => "📦"
-    };
 }

@@ -68,13 +68,17 @@ public partial class MainWindow : Window
         _dashboard.Refresh();
     }
 
-    private void SaveBtn_Click(object sender, RoutedEventArgs e)
+    private async void SaveBtn_Click(object sender, RoutedEventArgs e)
     {
         var timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
         var filePath  = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
             $"expenses_{timestamp}.csv");
         ExpenseStore.Instance.SaveToCsv(filePath);
+
+        SaveConfirmLabel.IsVisible = true;
+        await System.Threading.Tasks.Task.Delay(3000);
+        SaveConfirmLabel.IsVisible = false;
     }
 
     private async void LoadBtn_Click(object sender, RoutedEventArgs e)

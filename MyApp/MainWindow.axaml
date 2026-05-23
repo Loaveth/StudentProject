@@ -75,6 +75,12 @@
                         Padding="12,10"
                         Background="#2a2a8a"
                         Foreground="White"/>
+                <TextBlock Name="SaveConfirmLabel"
+                        Text="✅ Saved!"
+                        Foreground="#90ee90"
+                        FontSize="11"
+                        HorizontalAlignment="Center"
+                        IsVisible="False"/>
 
                 <Button Name="LoadBtn"
                         Content="📂  Load"

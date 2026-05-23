@@ -88,7 +88,7 @@ public partial class RecurringView : UserControl
 
         row.Children.Add(new TextBlock
         {
-            Text              = CategoryEmoji(r.Category),
+            Text              = CategoryHelper.GetEmoji(r.Category),
             VerticalAlignment = VerticalAlignment.Center,
             FontSize          = 14
         });
@@ -120,15 +120,4 @@ public partial class RecurringView : UserControl
 
         return row;
     }
-
-    private static string CategoryEmoji(string category) => category switch
-    {
-        "Housing"       => "🏠",
-        "Food"          => "🍔",
-        "Transport"     => "🚗",
-        "Health"        => "❤️",
-        "Entertainment" => "🎬",
-        "Subscriptions" => "📱",
-        _               => "📦"
-    };
 }
