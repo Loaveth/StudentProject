@@ -1,0 +1,93 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="MyApp.MainWindow"
+        Title="Expense Tracker"
+        Width="800" Height="600"
+        MinWidth="700" MinHeight="500">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="160"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Left sidebar -->
+        <StackPanel Grid.Column="0" Background="#191970" Spacing="8" Margin="0,20,0,0">
+            <TextBlock Text="💰 Expense Tracker"
+                       Foreground="White"
+                       FontSize="13"
+                       FontWeight="Bold"
+                       Margin="16,10,16,20"
+                       TextWrapping="Wrap"/>
+
+            <Button Name="NavDashboard"
+                    Content="📊  Dashboard"
+                    Click="NavDashboard_Click"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left"
+                    Margin="8,0" Padding="12,10"
+                    Background="Transparent"
+                    Foreground="White"/>
+
+            <Button Name="NavAddExpense"
+                    Content="➕  Add Expense"
+                    Click="NavAddExpense_Click"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left"
+                    Margin="8,0" Padding="12,10"
+                    Background="Transparent"
+                    Foreground="White"/>
+
+            <Button Name="NavRecurring"
+                    Content="🔁  Recurring"
+                    Click="NavRecurring_Click"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left"
+                    Margin="8,0" Padding="12,10"
+                    Background="Transparent"
+                    Foreground="White"/>
+
+            <!-- New Month button -->
+            <Border Margin="8,20,8,0" Background="#2a2a8a" CornerRadius="6">
+                <StackPanel Margin="8">
+                    <TextBlock Name="CurrentMonthLabel"
+                               Foreground="#aaaacc"
+                               FontSize="11"
+                               HorizontalAlignment="Center"/>
+                    <Button Name="NewMonthBtn"
+                            Content="Next Month →"
+                            Click="NewMonthBtn_Click"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Center"
+                            Padding="8,6"
+                            Margin="0,4,0,0"
+                            Background="#191970"
+                            Foreground="White"/>
+                </StackPanel>
+            </Border>
+
+            <StackPanel Margin="8,12,8,0" Spacing="8">
+                <Button Name="SaveBtn"
+                        Content="💾  Save"
+                        Click="SaveBtn_Click"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Left"
+                        Padding="12,10"
+                        Background="#2a2a8a"
+                        Foreground="White"/>
+
+                <Button Name="LoadBtn"
+                        Content="📂  Load"
+                        Click="LoadBtn_Click"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Left"
+                        Padding="12,10"
+                        Background="#2a2a8a"
+                        Foreground="White"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Right content area -->
+        <ContentControl Name="ContentArea" Grid.Column="1"/>
+    </Grid>
+</Window>

@@ -1,0 +1,56 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="MyApp.RecurringView">
+
+    <ScrollViewer>
+        <StackPanel Margin="30,24" Spacing="16" MaxWidth="480">
+
+            <TextBlock Text="Recurring Expenses" FontSize="22" FontWeight="Bold"/>
+            <TextBlock Text="These are added to every new month automatically. You can toggle them off for any specific month on the dashboard."
+                       FontSize="12" Foreground="#666" TextWrapping="Wrap"/>
+
+            <!-- Add new recurring -->
+            <Border Background="#f0f0fa" CornerRadius="8" Padding="16">
+                <StackPanel Spacing="10">
+                    <TextBlock Text="Add Recurring Expense" FontWeight="SemiBold"/>
+
+                    <TextBox Name="RecurringNameInput" Watermark="Name (e.g. Rent)"/>
+                    <TextBox Name="RecurringAmountInput" Watermark="Amount (e.g. 850)"/>
+
+                    <TextBlock Text="Frequency" FontSize="12" Foreground="#555"/>
+                    <ComboBox Name="RecurringFrequencyPicker" HorizontalAlignment="Stretch">
+                        <ComboBoxItem Content="Monthly" IsSelected="True"/>
+                        <ComboBoxItem Content="Weekly"/>
+                        <ComboBoxItem Content="Daily"/>
+                    </ComboBox>
+
+                    <TextBlock Text="Category" FontSize="12" Foreground="#555"/>
+                    <ComboBox Name="RecurringCategoryPicker" HorizontalAlignment="Stretch">
+                        <ComboBoxItem Content="Housing" IsSelected="True"/>
+                        <ComboBoxItem Content="Food"/>
+                        <ComboBoxItem Content="Transport"/>
+                        <ComboBoxItem Content="Health"/>
+                        <ComboBoxItem Content="Entertainment"/>
+                        <ComboBoxItem Content="Subscriptions"/>
+                        <ComboBoxItem Content="Other"/>
+                    </ComboBox>
+
+                    <TextBlock Name="RecurringValidation"
+                               Foreground="Red" FontSize="12" IsVisible="False"/>
+
+                    <Button Content="Add Recurring"
+                            Click="AddRecurring_Click"
+                            Background="#191970"
+                            Foreground="White"
+                            HorizontalAlignment="Right"
+                            Padding="16,8"/>
+                </StackPanel>
+            </Border>
+
+            <!-- List of recurring expenses -->
+            <TextBlock Text="Your Recurring Expenses" FontWeight="SemiBold" FontSize="15"/>
+            <StackPanel Name="RecurringList" Spacing="6"/>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

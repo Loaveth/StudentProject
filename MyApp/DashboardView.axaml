@@ -1,0 +1,116 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="MyApp.DashboardView">
+
+    <ScrollViewer>
+        <StackPanel Margin="24,20" Spacing="16">
+
+            <!-- Month selector -->
+            <StackPanel Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
+                <TextBlock Text="Dashboard" FontSize="22" FontWeight="Bold"
+                           VerticalAlignment="Center"/>
+                <Button Name="PrevMonthBtn" Content="◀ Prev" Click="PrevMonth_Click"
+                        Padding="8,4" FontSize="12"/>
+                <TextBlock Name="CurrentMonthLabel" FontSize="14" FontWeight="SemiBold"
+                           VerticalAlignment="Center" MinWidth="120" TextAlignment="Center"/>
+                <Button Name="NextMonthBtn" Content="Next ▶" Click="NextMonth_Click"
+                        Padding="8,4" FontSize="12"/>
+            </StackPanel>
+
+            <!-- Summary cards -->
+            <Grid ColumnDefinitions="*,*,*">
+                <Border Grid.Column="0" Background="#191970" CornerRadius="8"
+                        Padding="16" Margin="0,0,8,0">
+                    <StackPanel>
+                        <TextBlock Text="Monthly Income" Foreground="#aaaacc" FontSize="11"/>
+                        <TextBlock Name="IncomeCard" Text="$0.00"
+                                   Foreground="White" FontSize="20" FontWeight="Bold"/>
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="1" Background="#191970" CornerRadius="8"
+                        Padding="16" Margin="0,0,8,0">
+                    <StackPanel>
+                        <TextBlock Text="Total Expenses" Foreground="#aaaacc" FontSize="11"/>
+                        <TextBlock Name="ExpensesCard" Text="$0.00"
+                                   Foreground="White" FontSize="20" FontWeight="Bold"/>
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="2" Background="#191970" CornerRadius="8" Padding="16">
+                    <StackPanel>
+                        <TextBlock Text="Remaining" Foreground="#aaaacc" FontSize="11"/>
+                        <TextBlock Name="RemainingCard" Text="$0.00"
+                                   Foreground="White" FontSize="20" FontWeight="Bold"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Income & Savings Goal -->
+            <Border Background="#f0f0fa" CornerRadius="8" Padding="16">
+                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto">
+                    <StackPanel Grid.Column="0" Grid.Row="0" Margin="0,0,8,0">
+                        <TextBlock Text="Monthly Income" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                        <TextBox Name="IncomeInput"
+                                 Watermark="Enter income (e.g. 3000)"
+                                 TextChanged="IncomeInput_TextChanged"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Grid.Row="0" Margin="8,0,0,0">
+                        <TextBlock Text="Savings Goal" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                        <TextBox Name="SavingsGoalInput"
+                                 Watermark="Enter savings goal"
+                                 TextChanged="SavingsGoalInput_TextChanged"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Budget bar -->
+            <Border Background="#f0f0fa" CornerRadius="8" Padding="16">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Budget Used" FontWeight="SemiBold"/>
+                    <Border Background="#ddd" CornerRadius="4" Height="18">
+                        <Border Name="BudgetBar" Background="#191970"
+                                CornerRadius="4" HorizontalAlignment="Left"
+                                Width="0" Height="18"/>
+                    </Border>
+                    <TextBlock Name="BudgetBarLabel" FontSize="11" Foreground="#555"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Recurring expenses this month (with toggles) -->
+            <Border Background="#f0f0fa" CornerRadius="8" Padding="16">
+                <StackPanel Spacing="10">
+                    <TextBlock Text="Recurring This Month" FontWeight="SemiBold"/>
+                    <TextBlock Text="Uncheck any recurring expense to exclude it this month."
+                               FontSize="11" Foreground="#666"/>
+                    <StackPanel Name="RecurringToggles" Spacing="6"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Category chart -->
+            <Border Background="#f0f0fa" CornerRadius="8" Padding="16">
+                <StackPanel Spacing="10">
+                    <TextBlock Text="Expenses by Category" FontWeight="SemiBold"/>
+                    <StackPanel Name="CategoryChart" Spacing="6"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Frequency chart -->
+            <Border Background="#f0f0fa" CornerRadius="8" Padding="16">
+                <StackPanel Spacing="10">
+                    <TextBlock Text="Expenses by Frequency (monthly equivalent)" FontWeight="SemiBold"/>
+                    <StackPanel Name="FrequencyChart" Spacing="6"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Savings calculator -->
+            <Border Background="#f0f0fa" CornerRadius="8" Padding="16">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Savings Calculator" FontWeight="SemiBold"/>
+                    <TextBlock Name="SavingsLine1" FontSize="13"/>
+                    <TextBlock Name="SavingsLine2" FontSize="13"/>
+                    <TextBlock Name="SavingsLine3" FontSize="13" FontWeight="Bold"/>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
